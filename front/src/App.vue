@@ -1,5 +1,6 @@
 <script setup>
 	import {ref} from "vue";
+	import Character from "@/components/Character.vue";
 
 	const data = ref({
 		name: "",
@@ -25,8 +26,7 @@
 <template>
 	<h1>Star War Character</h1>
 	<button @click="getData">Get a random character info</button>
-	<p>Name : {{ data.name }}</p>
-	<p>Height : {{ data.height }}</p>
+	<Character :name="data.name" :height="data.height" />
 </template>
 
 <style scoped></style>
