@@ -1,10 +1,19 @@
 <script setup>
-	import {ref} from "vue";
+	import {ref, watch} from "vue";
+	import {useMessage} from "./components/useMessage";
 	import Character from "@/components/Character.vue";
 
 	const data = ref({
 		name: "",
 		height: 0,
+	});
+
+	const {messages} = useMessage();
+
+	const message = ref("");
+
+	watch([data], () => {
+		message.value = messages.value[/\d+/.test(data.value.name) ? "nonHuman" : "human"];
 	});
 
 	function getData() {
@@ -26,7 +35,7 @@
 <template>
 	<h1>Star War Character</h1>
 	<button @click="getData">Get a random character info</button>
-	<Character :name="data.name" :height="data.height" />
+	<Character :name="data.name" :height="data.height" :message="message" />
 </template>
 
 <style scoped></style>
