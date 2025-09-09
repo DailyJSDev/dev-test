@@ -1,4 +1,5 @@
-import {ref, onMounted} from "vue";
+import {ref, onMounted, watchEffect} from "vue";
+import {useUrl} from "./useUrl";
 
 export function useMessage() {
 	const messages = ref({
@@ -6,14 +7,17 @@ export function useMessage() {
 		nonHuman: "",
 	});
 
+	const {urlData, getData} = useUrl();
+
 	onMounted(() => {
-		fetch("http://localhost:4000/")
-			.then((resp) => resp.json())
-			.then((data) => {
-				console.log(data);
-				return data;
-			})
-			.then(({human, nonHuman}) => (messages.value = {human, nonHuman}));
+		getData("http://localhost:4000/");
+	});
+
+	watchEffect(() => {
+		messages.value = {
+			human: urlData.value?.human ?? "",
+			nonHuman: urlData.value?.nonHuman ?? "",
+		};
 	});
 
 	return {
