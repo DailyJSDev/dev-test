@@ -1,5 +1,5 @@
 import {ref, watchEffect} from "vue";
-import {useUrl} from "@/components/useUrl";
+import {useUrl} from "@/components/composables/useUrl";
 
 export function useCharacter() {
 	const character = ref({
