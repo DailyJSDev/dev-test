@@ -3,8 +3,8 @@ import {useUrl} from "./useUrl";
 
 export function useMessage() {
 	const messages = ref({
-		human: "",
-		nonHuman: "",
+		tall: "",
+		short: "",
 	});
 
 	const {urlData, getData} = useUrl();
@@ -15,8 +15,8 @@ export function useMessage() {
 
 	watchEffect(() => {
 		messages.value = {
-			human: urlData.value?.human ?? "",
-			nonHuman: urlData.value?.nonHuman ?? "",
+			tall: urlData.value?.tall ?? "",
+			short: urlData.value?.short ?? "",
 		};
 	});
 

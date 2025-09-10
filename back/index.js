@@ -7,8 +7,8 @@ app.use(cors({origin: "http://localhost:5173"}));
 
 app.get("/", (req, res) => {
 	res.json({
-		human: "Bonjour !",
-		nonHuman: "Hello, I'm a Robot !",
+		tall: "You are a tall person !",
+		short: "You are very short !",
 	});
 });
 

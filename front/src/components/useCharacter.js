@@ -12,7 +12,7 @@ export function useCharacter() {
 	watchEffect(() => {
 		character.value = {
 			name: urlData.value?.name ?? "No name yet",
-			height: urlData.value?.height === undefined ? 0 : urlData.value.height,
+			height: urlData.value?.height === undefined ? 0 : parseInt(urlData.value.height),
 		};
 	});
 
